@@ -11,9 +11,11 @@ import Login from './pages/Auth/Login'
 import Home from './pages/Dashboard/Home'
 import Expense from './pages/Dashboard/Expense'
 import Income from './pages/Dashboard/Income'
+import UserProvider from './context/userContext'
 
 function App() {
   return (
+    <UserProvider>
     <div>
       <Router>
         <Routes>
@@ -28,6 +30,7 @@ function App() {
         </Routes>
       </Router>
     </div>
+    </UserProvider>
   )
 }
 
