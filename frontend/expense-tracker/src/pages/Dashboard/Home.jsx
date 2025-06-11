@@ -9,6 +9,7 @@ import { IoMdCard } from "react-icons/io";
 import { addThousandsSeperator } from '../../utils/helper';
 import { LuHandCoins, LuWalletMinimal } from 'react-icons/lu';
 import RecentTransactions from '../../components/Dashboard/RecentTransactions';
+import FinanceOverview from '../../components/Dashboard/FinanceOverview';
 
 function Home() {
 
@@ -68,7 +69,7 @@ function Home() {
           <InfoCard
             icon={<LuHandCoins />}
             label="Total Expenses"
-            value={addThousandsSeperator(dashboardData?.totalExpense || 0)}
+            value={addThousandsSeperator(dashboardData?.totalExpenses || 0)}
             color="bg-red-500"
           />
 
@@ -79,6 +80,13 @@ function Home() {
                 transactions={dashboardData?.recentTransactions}
                 onSeeMore={() => navigate("/expenses")}
               />  
+
+              <FinanceOverview
+                  totalBalance={dashboardData?.totalBalance || 0}
+                  totalIncome={dashboardData?.totalIncome || 0}
+                  totalExpense={dashboardData?.totalExpenses || 0}
+
+               />
         </div>
 
 
