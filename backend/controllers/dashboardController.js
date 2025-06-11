@@ -6,7 +6,9 @@ exports.getDashboardData = async(req,res) => {
 
     try{
     const userId = req.user.id;
-    const userObjectId = new Types.ObjectId(String(userId));    
+    const userObjectId = new Types.ObjectId(String(userId));  
+    
+    
 
     const totalIncome = await Income.aggregate([
         { $match: {userId : userObjectId}},
@@ -15,15 +17,24 @@ exports.getDashboardData = async(req,res) => {
 
     console.log("totalIncome", {totalIncome, userId: isValidObjectId(userId)});
 
+
     const totalExpense = await Expense.aggregate([
         { $match: {userId : userObjectId}},
         { $group : {_id: null, total: { $sum: "$amount"}}},
     ]);
     console.log("totalExpense", {totalExpense, userId: isValidObjectId(userId)});
+    
+    const sixtyDaysAgo = new Date();
+    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+    sixtyDaysAgo.setHours(0, 0, 0, 0); // Midnight
+
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    thirtyDaysAgo.setHours(0, 0, 0, 0);
 
     const last60DaysIncomeTransactions = await Income.find({
-        userId,
-        date: { $gte : new Date(Date.now() - 60 * 24 * 60 * 60 * 1000)},
+        userId:userObjectId,
+        date: { $gte: sixtyDaysAgo },
     }).sort({date: -1});
 
     const incomeLast60Days = last60DaysIncomeTransactions.reduce(
@@ -31,8 +42,8 @@ exports.getDashboardData = async(req,res) => {
     );
 
     const last30DaysExpenseTransactions = await Expense.find({
-        userId,
-        date: { $gte : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)},
+        userId:userObjectId,
+        date: { $gte: thirtyDaysAgo },
     }).sort({date: -1});
 
     const expensesLast30Days = last30DaysExpenseTransactions.reduce(
