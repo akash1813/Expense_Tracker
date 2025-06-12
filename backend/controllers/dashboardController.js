@@ -24,47 +24,49 @@ exports.getDashboardData = async(req,res) => {
     ]);
     console.log("totalExpense", {totalExpense, userId: isValidObjectId(userId)});
     
-    const sixtyDaysAgo = new Date();
-    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
-    sixtyDaysAgo.setHours(0, 0, 0, 0); // Midnight
 
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    thirtyDaysAgo.setHours(0, 0, 0, 0);
+const last60DaysIncomeTransactions = await Income.find({
+    userId,
+    date: { $gte: new Date(Date.now() - 60*24*60*60*1000) },
+  }).sort({ date: -1 })
 
-    const last60DaysIncomeTransactions = await Income.find({
-        userId:userObjectId,
-        date: { $gte: sixtyDaysAgo },
-    }).sort({date: -1});
 
     const incomeLast60Days = last60DaysIncomeTransactions.reduce(
-        (sum, transaction) => sum + transaction.amount, 0
+        (sum, transaction) => sum + transaction.amount, 
+        0
     );
 
     const last30DaysExpenseTransactions = await Expense.find({
-        userId:userObjectId,
-        date: { $gte: thirtyDaysAgo },
+        userId,
+        date: { $gte: new Date(Date.now() - 30*24*60*60*1000) },
     }).sort({date: -1});
 
     const expensesLast30Days = last30DaysExpenseTransactions.reduce(
-        (sum, transaction) => sum + transaction.amount, 0
+        (sum, transaction) => sum + transaction.amount, 
+        0
     );
+
+
+   
 
     // fetch last 5 transactions ( income + expense)
     const lastTransactions = [
-        ...(await Income.find({userId}).sort({date: -1}).limit(5)).map(
+        ...(await Income.find({userId: userObjectId}).sort({date: -1}).limit(5)).map(
             (txn) => ({
                 ...txn.toObject(),
                 type: "income",
             })
         ),
-        ...(await Expense.find({userId}).sort({date: -1}).limit(5)).map(
+        ...(await Expense.find({userId: userObjectId}).sort({date: -1}).limit(5)).map(
             (txn) => ({
                 ...txn.toObject(),
                 type: "expense",
             })
         ),
     ].sort((a,b) => b.date - a.date );   // Sort Latest first
+
+    console.log("last60DaysIncomeTransactions count:", last60DaysIncomeTransactions.length);
+    console.log("last30DaysExpenseTransactions count:", last30DaysExpenseTransactions.length);
 
     res.json({
         totalBalance: 
