@@ -2,6 +2,7 @@ import React from 'react'
 import { LuDownload } from 'react-icons/lu'
 import TransactionInfoCard from '../Cards/TransactionInfoCard'
 import moment from 'moment'
+import { addThousandsSeperator } from '../../utils/helper'
 
 const ExpenseList = ({transactions,onDelete,onDownload}) => {
   return (
@@ -23,7 +24,7 @@ const ExpenseList = ({transactions,onDelete,onDownload}) => {
                     title={expense.category}
                     icon={expense.icon}
                     date={moment(expense.date).format("Do MMM YYYY")}
-                    amount={expense.amount}
+                    amount={addThousandsSeperator(expense.amount)}
                     type="expense"
                     onDelete={() => onDelete(expense._id)} 
 

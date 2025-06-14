@@ -1,5 +1,6 @@
 import React from 'react'
 import { XAxis, YAxis, ResponsiveContainer, CartesianGrid, Area, AreaChart, Tooltip } from "recharts";
+import { addThousandsSeperator } from '../../utils/helper';
 
 const CustomLineChart = ({ data }) => {
 
@@ -11,7 +12,7 @@ const CustomLineChart = ({ data }) => {
                         {payload[0].payload.category}
                     </p>
                     <p className='text-sm text-gray-600'>
-                        Amount: <span className='text-sm font-medium text-gray-900'>₹{payload[0].payload.amount}</span>
+                        Amount: <span className='text-sm font-medium text-gray-900'>₹{addThousandsSeperator(payload[0].payload.amount)}</span>
                     </p>
                 </div>
             )

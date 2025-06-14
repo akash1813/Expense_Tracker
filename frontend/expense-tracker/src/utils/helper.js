@@ -98,12 +98,14 @@ export const getInitials = (name) => {
 
 export const addThousandsSeperator = (num) => {
 
-    if (num == null || isNaN(num))
-        return "";
-
+    if (num == null || isNaN(num)) return "";
+    
+  
     const [integerPart, fractionalPart] = num.toString().split(".");
-    const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
 
+    const formattedInteger = parseInt(integerPart).toLocaleString("en-IN");
+    
     return fractionalPart
         ? `${formattedInteger}.${fractionalPart}`
         : formattedInteger;

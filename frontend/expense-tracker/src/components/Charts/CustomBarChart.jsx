@@ -10,6 +10,7 @@ import {
     ResponsiveContainer,
     Cell,
 } from "recharts";
+import { addThousandsSeperator } from '../../utils/helper';
 
 
 const CustomBarChart = ({ data }) => {
@@ -26,7 +27,7 @@ const CustomBarChart = ({ data }) => {
                             {payload[0].payload.category}
                         </p>
                         <p className='text-sm text-gray-600'>
-                            Amount: <span className='text-sm font-medium text-gray-900'>₹{payload[0].payload.amount}</span>
+                            Amount: <span className='text-sm font-medium text-gray-900'>₹{addThousandsSeperator(payload[0].payload.amount)}</span>
                         </p>
                     </div>
                 );

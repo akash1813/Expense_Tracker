@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import CustomTooltip from './CustomTooltip';
 import CustomLegend from './CustomLegend';
+import { addThousandsSeperator } from '../../utils/helper';
 
 
 const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) => {
