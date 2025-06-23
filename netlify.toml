@@ -4,7 +4,7 @@
   base = "/"
 
 [build.environment]
-  VITE_API_URL = "https://your-backend-server-url.com"  # Replace with your actual backend URL
+  VITE_API_URL = "https://expense-tracker-93r3.onrender.com/api/v1"
   NODE_VERSION = "18.17.1"  # Using LTS version
 
 [[redirects]]
