@@ -1,0 +1,10 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "Expense Tracker Full Stack Application",
+  "scripts": {
+    "dev": "cd frontend/expense-tracker && npm start",
+    "build": "cd frontend/expense-tracker && npm run build",
+    "start": "cd backend && npm start"
+  }
+}
