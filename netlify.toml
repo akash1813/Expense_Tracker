@@ -1,9 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "npm run netlify-build"
   publish = "frontend/expense-tracker/build"
+  base = "/"
 
 [build.environment]
   VITE_API_URL = "https://your-backend-server-url.com"  # Replace with your actual backend URL
+  NODE_VERSION = "18.17.1"  # Using LTS version
 
 [[redirects]]
   from = "/*"
@@ -14,3 +16,21 @@
   for = "/*"
     [headers.values]
       Access-Control-Allow-Origin = "*"
+      X-Frame-Options = "DENY"
+      X-Content-Type-Options = "nosniff"
+      X-XSS-Protection = "1; mode=block"
+      Referrer-Policy = "strict-origin-when-cross-origin"
+      Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://your-backend-server-url.com;"
+
+# Configure Ruby and Go to be disabled since we don't need them
+[build.image]
+  ruby = false
+  go = false
+  php = false
+  node = true
+  node_version = "18.17.1"  # Using LTS version
+
+# Disable Ruby and Go
+[build.environment]
+  RUBY_VERSION = ""
+  GO_VERSION = ""
