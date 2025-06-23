@@ -5,7 +5,7 @@
 
 [build.environment]
   VITE_API_URL = "https://expense-tracker-93r3.onrender.com/api/v1"
-  NODE_VERSION = "18.17.1"
+  NODE_VERSION = "16.20.2"
   RUBY_VERSION = ""
   GO_VERSION = ""
 
