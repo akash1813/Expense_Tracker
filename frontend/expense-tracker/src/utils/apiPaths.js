@@ -1,4 +1,7 @@
-export const BASE_URL = "http://localhost:8000";
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://expense-tracker-backend-sepia.vercel.app"
+    : "http://localhost:8000";
 
 export const API_PATHS = {
     
