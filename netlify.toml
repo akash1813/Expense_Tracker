@@ -6,6 +6,8 @@
 [build.environment]
   VITE_API_URL = "https://expense-tracker-93r3.onrender.com/api/v1"
   NODE_VERSION = "18.17.1"
+  RUBY_VERSION = ""
+  GO_VERSION = ""
 
 [[redirects]]
   from = "/*"
@@ -21,14 +23,3 @@
       X-XSS-Protection = "1; mode=block"
       Referrer-Policy = "strict-origin-when-cross-origin"
       Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://expense-tracker-93r3.onrender.com;"
-
-[build.image]
-  ruby = false
-  go = false
-  php = false
-  node = true
-  node_version = "18.17.1"
-
-[build.environment]
-  RUBY_VERSION = ""
-  GO_VERSION = ""
