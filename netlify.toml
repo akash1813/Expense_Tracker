@@ -1,7 +1,7 @@
 [build]
-  command = "npm run netlify-build"
-  publish = "frontend/expense-tracker/build"
-  base = "/"
+  command = "npm run build"
+  publish = "build"
+  base = "frontend/expense-tracker"
 
 [build.environment]
   VITE_API_URL = "https://expense-tracker-93r3.onrender.com/api/v1"
