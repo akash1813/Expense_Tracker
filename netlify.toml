@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "frontend/expense-tracker/build"
+
+[build.environment]
+  VITE_API_URL = "https://your-backend-server-url.com"  # Replace with your actual backend URL
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+      Access-Control-Allow-Origin = "*"

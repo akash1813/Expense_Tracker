@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cd frontend/expense-tracker && npm start",
     "build": "cd frontend/expense-tracker && npm run build",
-    "start": "cd backend && npm start"
+    "start": "cd backend && npm start",
+    "netlify-build": "npm run build"
   }
 }
