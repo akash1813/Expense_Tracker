@@ -5,7 +5,7 @@
 
 [build.environment]
   VITE_API_URL = "https://expense-tracker-93r3.onrender.com/api/v1"
-  NODE_VERSION = "18.17.1"  # Using LTS version
+  NODE_VERSION = "18.17.1"
 
 [[redirects]]
   from = "/*"
@@ -20,17 +20,15 @@
       X-Content-Type-Options = "nosniff"
       X-XSS-Protection = "1; mode=block"
       Referrer-Policy = "strict-origin-when-cross-origin"
-      Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://your-backend-server-url.com;"
+      Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://expense-tracker-93r3.onrender.com;"
 
-# Configure Ruby and Go to be disabled since we don't need them
 [build.image]
   ruby = false
   go = false
   php = false
   node = true
-  node_version = "18.17.1"  # Using LTS version
+  node_version = "18.17.1"
 
-# Disable Ruby and Go
 [build.environment]
   RUBY_VERSION = ""
   GO_VERSION = ""
