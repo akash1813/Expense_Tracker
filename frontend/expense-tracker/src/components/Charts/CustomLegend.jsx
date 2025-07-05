@@ -1,5 +1,4 @@
 import React from 'react'
-import { addThousandsSeperator } from '../../utils/helper';
 
 const CustomLegend = ({ payload }) => {
     return (
@@ -10,7 +9,7 @@ const CustomLegend = ({ payload }) => {
                         style={{ backgroundColor: entry.color }}>
                     </div>
                     <span className='text-xs text-gray-700 font-medium'>
-                        {addThousandsSeperator(entry.value)} 
+                        {entry.value} 
                     </span>
                 </div>
             ))}
