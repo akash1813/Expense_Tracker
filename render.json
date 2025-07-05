@@ -1,0 +1,15 @@
+{
+  "services": [
+    {
+      "type": "web",
+      "name": "expense-tracker-backend",
+      "buildCommand": "cd backend && npm install",
+      "startCommand": "cd backend && npm run render",
+      "env": {
+        "MONGO_URI": "mongodb+srv://akashdhiman747:Akash1806%40@expensetracker.wqlwash.mongodb.net/?retryWrites=true&w=majority&appName=expenseTracker",
+        "JWT_SECRET": "b081b26fd6da9f1ae864d78bd7670f75006ea8f6d3e65c676e04050c78a5f445ef3bf959e0673ae67f1d8fb249a4ef634f463b1ad0d6eb7fd9ea2ff151724bf6",
+        "EMAIL_USER": "akashdhiman1806@gmail.com"
+      }
+    }
+  ]
+}
